@@ -13,6 +13,8 @@
     "lodash": "^4.17.10"
   },
   "scripts": {
-    "test": "jest"
+    "benchmark:numbers": "node numbers/benchmark.js &> ./numbers/__generated__/benchmark.output.bash",
+    "test:numbers": "jest --colors &> ./numbers/__generated__/test.output.bash",
+    "run:numbers": "npm run benchmark:numbers && npm run test:numbers"
   }
 }
