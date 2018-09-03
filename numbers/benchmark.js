@@ -1,31 +1,24 @@
 const _ = require('lodash')
-const Benchmark = require('benchmark')
+const BenchTable = require('benchtable')
 
-const groupCases = _(require('./cases').default)
-  .flatMap(currentCase => (
-    currentCase.samples.map(sample => ({
-      libraryName: currentCase.libraryName,
-      sample,
-    }))
-  ))
-  .groupBy('sample.name')
-  .values()
-  .value()
+const { samples, inputs } = require('./cases').default
 
-groupCases.map((cases) => {
-  return cases
-    .reduce(
-      (suite, { libraryName, sample }) => (
-        suite.add(`${libraryName}: ${sample.name}`, () => {
-          if (!sample.run().eq(sample.expected)) {
-            throw new Error()
-          }
-        })
-      ),
-      new Benchmark.Suite(),
-    )
-    .on('complete', function() {
-      console.log('Fastest is ' + this.filter('fastest').map('name'))
-    })
-    .run({ async: true })
-})
+const bench = new BenchTable()
+
+for (const input of inputs) {
+  bench.addFunction(input.name, (sample) => {
+    if (!sample.run(input).eq(sample.expected)) {
+      throw new Error()
+    }
+  })
+}
+
+for (const sample of samples) {
+  bench.addInput(sample.name, [sample])
+}
+
+bench
+  .on('complete', function() {
+    console.log(bench.table.toString())
+  })
+  .run({ async: true })

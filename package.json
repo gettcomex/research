@@ -5,6 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "benchmark": "^2.1.4",
+    "benchtable": "^0.1.0",
     "big.js": "^5.1.2",
     "bignumber.js": "^7.2.1",
     "decimal.js": "^10.0.1",
@@ -13,7 +14,7 @@
     "lodash": "^4.17.10"
   },
   "scripts": {
-    "benchmark:numbers": "node numbers/benchmark.js &> ./numbers/__generated__/benchmark.output.bash",
+    "benchmark:numbers": "node numbers/benchmark.js --colors &> ./numbers/__generated__/benchmark.output.bash",
     "test:numbers": "jest --colors &> ./numbers/__generated__/test.output.bash",
     "run:numbers": "npm run benchmark:numbers && npm run test:numbers"
   }

@@ -1,11 +1,13 @@
-const cases = require('./cases').default
+const { samples, inputs } = require('./cases').default
 
-cases.map(currentCase => {
-  describe(currentCase.libraryName, () => {
-    currentCase.samples.map(sample => {
+for (const input of inputs) {
+  describe(input.name, () => {
+    for (const sample of samples) {
       test(sample.name, () => {
-        expect(sample.run().toString()).toBe(sample.expected)
+        const result = sample.run(input).toString()
+
+        expect(result).toBe(sample.expected)
       })
-    })
+    }
   })
-})
+}
