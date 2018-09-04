@@ -15,6 +15,11 @@ const samples = [
     expected: '0.3',
   },
   {
+    name: '4.1414999961 ** 2',
+    run: ({ reference }) => reference('4.1414999961').pow(2),
+    expected: '17.15202221769630001521',
+  },
+  {
     name: '4.1414999961853027 ** 2',
     run: ({ reference }) => reference('4.1414999961853027').pow(2),
     expected: '17.15202221840286227865191549062729',
