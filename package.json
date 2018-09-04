@@ -4,16 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^7.1.1",
+    "@commitlint/config-conventional": "^7.1.1",
     "benchmark": "^2.1.4",
     "benchtable": "^0.1.0",
     "big.js": "^5.1.2",
     "bignumber.js": "^7.2.1",
     "decimal.js": "^10.0.1",
     "decimal.js-light": "^2.4.1",
+    "husky": "^0.14.3",
     "jest": "^23.5.0",
     "lodash": "^4.17.10"
   },
   "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "benchmark:numbers": "node numbers/benchmark.js --colors &> ./numbers/__generated__/benchmark.output.bash",
     "test:numbers": "jest --colors &> ./numbers/__generated__/test.output.bash",
     "run:numbers": "npm run benchmark:numbers && npm run test:numbers"
