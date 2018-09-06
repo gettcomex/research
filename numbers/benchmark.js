@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const BenchTable = require('benchtable')
 
 const { samples, inputs } = require('./cases').default
@@ -18,7 +17,7 @@ for (const sample of samples) {
 }
 
 bench
-  .on('complete', function() {
+  .on('complete', () => {
     console.log(bench.table.toString())
   })
   .run({ async: true })
