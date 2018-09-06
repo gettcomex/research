@@ -6,17 +6,31 @@
   "devDependencies": {
     "@commitlint/cli": "^7.1.1",
     "@commitlint/config-conventional": "^7.1.1",
+    "babel-eslint": "^9.0.0",
     "benchmark": "^2.1.4",
     "benchtable": "^0.1.0",
     "big.js": "^5.1.2",
     "bignumber.js": "^7.2.1",
     "decimal.js": "^10.0.1",
     "decimal.js-light": "^2.4.1",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "husky": "^0.14.3",
     "jest": "^23.5.0",
+    "lint-staged": "^7.2.2",
     "lodash": "^4.17.10"
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "scripts": {
+    "precommit": "lint-staged",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "benchmark:numbers": "node numbers/benchmark.js --colors &> ./numbers/__generated__/benchmark.output.bash",
     "test:numbers": "jest --colors &> ./numbers/__generated__/test.output.bash",
